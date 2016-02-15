@@ -1,9 +1,12 @@
-#![feature(test, core, core_panic)]
+#![feature(test)]
 extern crate test;
-extern crate core;
+extern crate libc;
+
 use test::Bencher;
 
 const LARGE_NUMBER: i32 = 1_000_000;
+
+
 
 #[bench]
 fn bench_even_imperative(b: &mut Bencher) {
@@ -17,16 +20,13 @@ fn bench_even_imperative(b: &mut Bencher) {
             i += 1;
         }
 
-        // if the line below is uncommented the next benchmark almost
+        // if the code below is uncommented the next benchmark almost
         // runs twice as fast...?
-        //if !(list.iter().count() > 0) {
-        //    panic!(concat!("assertion failed: ", "list.iter().count() > 0" ))
-        //}
-        if list.iter().count() == 0 {
-            static _MSG_FILE_LINE: (&'static str, &'static str, u32) = ("explicit panic", file!(), line!());
-            //core::panicking::panic(&_MSG_FILE_LINE)
-            test::black_box(&_MSG_FILE_LINE);
-        } 
+        if test::black_box(false) {
+            unsafe {
+                libc::puts(1 as *const i8);
+            }
+        }
     });
 }
 

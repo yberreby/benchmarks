@@ -1,8 +1,10 @@
 [package]
+authors = ["Yohai Berreby (filsmick) <yohaiberreby@gmail.com>"]
 name = "threads"
 version = "0.1.0"
-authors = ["Yohai Berreby (filsmick) <yohaiberreby@gmail.com>"]
-
 
 [dependencies]
 rand = "*"
+
+[dev-dependencies]
+libc = "0.2.1"
