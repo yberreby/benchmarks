@@ -19,13 +19,6 @@ fn char_at(s: &str, i: usize) -> char {
 }
 
 #[bench]
-fn bench_char_at_native(b: &mut Bencher) {
-    b.iter(|| test::black_box(LARGE_STRING.char_at(50)));
-}
-
-
-
-#[bench]
 fn bench_char_at_iter(b: &mut Bencher) {
     b.iter(|| test::black_box(char_at(LARGE_STRING, 50)));
 }
